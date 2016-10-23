@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/main.css" media="screen" title="no title">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Exo|Roboto" rel="stylesheet">
+
+    <title></title>
+  </head>
+  <body ng-app = "formController">
+    <div class="container-fluid" ng-controller= "firstCtrl" >
+      <!-- header -->
+      <div class="header">
+        <h1>Angular first assignment</h1>
+      </div>
+      <!-- spacer -->
+      <div class="spacer">
+
+      </div>
+      <!-- form -->
+      <div class="formWrapper col-xs-12 col-s-12 col-md-6 col-lg-6 col-xl-6" ng-class="{hidden: showme}">
+        <form ng-hide="showme"  >
+          <!-- first name -->
+          <div class="form-group">
+            <label for="First name:">First name:</label>
+            <input type="text" class="form-control"  ng-model="firstName">
+          </div>
+          <!-- last name -->
+          <div class="form-group">
+            <label for="Last name:">Last name:</label>
+            <input type="text" class="form-control"  ng-model= "lastName">
+          </div>
+          <!-- description -->
+          <div class="form-group">
+            <label for="Description:">Description:</label>
+            <textarea type="text" class="form-control"  ng-model="description"></textarea>
+          </div>
+          <!-- hobbies -->
+          <div class="form-group hobby-group">
+            <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xl-10 hobby-input">
+              <label>Hobbies:</label>
+              <input type="text" class="form-control" ng-model="newHobby">
+              <p class="warning">{{warning}}</p>
+            </div>
+            <div class="col-xs-6 col-sm-4 col-md-4 col-lg-4 col-xl-4 hobby-btn">
+              <button ng-click="addHobby()" class="btn add-btn">add</button>
+            </div>
+          </div>
+          <div class="hobbiesList">
+            <ul ng-repeat="hobby in hobbies">
+              <li><span ng-class ="{blue:fav}">{{hobby}}</span>  <button class="btn fav-btn" ng-click="fav = !fav; unfav()">{{buttonText}}</button> <button class="btn del-btn" ng-click="delete(hobby)">Delete</button></li>
+            </ul>
+          </div>
+          <button class="btn submit-btn btn-span" type="submit"  ng-click="viewInfo(firstName,lastName,description,hobbies); showme=true"> Submit</button>
+      </form>
+    </div>
+    <!-- submitted form -->
+    <div class=" col-xs-12 col-s-12 col-md-6 col-lg-6 col-xl-6" ng-class="{details:showme}">
+      <h3>{{fullName}}</h3>
+      <br>
+      <p class="info">
+        {{Description}}
+        <br>
+      <ul ng-repeat="hobby in hobbies" ng-show="showme" >
+        <li><span ng-class ="{blue:fav}">{{hobby}}</span></li>
+      </ul>
+      </p>
+    </div>
+  </div>
+  <script src="js/app.js"></script>
+  <script src="js/controllers/firstCtrl.js" ></script>
+  </body>
+</html>
